@@ -23,8 +23,10 @@ class NewsResource extends JsonResource
        'images' => $this->images,
        'categories' => $this->categories,
        'tags' => $this->tags,
-       'likes'=> $this->likes,
-       'dislikes'=> $this->dislikes
+       'like'=> $this->like,
+       'dislike'=> $this->dislike,
+       'created_at'=> $this->created_at,
+
 
 
 
