@@ -22,7 +22,10 @@ class NewsResource extends JsonResource
        'content' => $this->body,
        'images' => $this->images,
        'categories' => $this->categories,
-       'tags' => $this->tags
+       'tags' => $this->tags,
+       'likes'=> $this->likes,
+       'dislikes'=> $this->dislikes
+
 
 
 
