@@ -114,7 +114,23 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        //
+
+      
+       $request['body'] = $request->content;
+
+       unset($request['content']);
+
+        $news->update($request->all());
+
+
+    return response([
+                
+           'data' => new NewsResource($news)     
+
+          ],Response::HTTP_CREATED);
+
+
+
     }
 
     /**

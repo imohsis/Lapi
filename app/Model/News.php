@@ -7,6 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
+
+
+
+
+
+   protected $fillable = ['title', 'subtitle', 'main_image', 'body', 'images', 'categories', 'tags'
+
+   ]
+
+
+
+
+
+
      public function tags()
     {
     	return $this->belongsToMany('App\Model\Tag', 'news_tags')->withTimestamps();
