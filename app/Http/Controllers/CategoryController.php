@@ -14,73 +14,71 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return $categories = Category::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
-        //
+         $this->validate($request, [
+ 
+
+        'name' => 'required',
+
+     //   'slug' => 'required'
+
+        ]);
+
+
+    $category = new Category;
+
+    $category->name = $request->name;
+
+    //$category->slug = $request->slug;
+
+    $category->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(Category $category)
     {
-        //
+        //display only in the view
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function edit(Category $category)
     {
-        //
+       return $category = Category::where('id', $id  )->first();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, Category $category)
     {
-        //
-    }
+        $this->validate($request, [
+ 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Model\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+        'name' => 'required',
+
+      //  'slug' => 'required'
+
+        ]);
+
+
+    $category = Category::find($id);
+
+    $category->name = $request->name;
+
+   // $category->slug = $request->slug;
+
+    $category->save();
+    }
+    
+
+  
     public function destroy(Category $category)
     {
-        //
+       return Category::where('id', $id)->delete();
     }
 }
 

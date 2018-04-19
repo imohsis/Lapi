@@ -14,7 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+         return $tags = Tag::all();
     }
 
     /**
@@ -22,20 +22,26 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+          $this->validate($request, [
+ 
+
+        'name' => 'required',
+
+       
+
+        ]);
+
+
+    $tag = new Tag;
+
+    $tag->name = $request->name;
+
+   // $tag->slug = $request->slug;
+
+    $tag->save();
     }
 
     /**
@@ -57,7 +63,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return $tag = Tag::where('id', $id  )->first();
     }
 
     /**
@@ -69,10 +75,25 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
-    }
+                  $this->validate($request, [
+         
 
-    /**
+                'name' => 'required',
+
+               // 'slug' => 'required'
+
+                ]);
+
+
+            $tag = Tag::find($id);
+
+            $tag->name = $request->name;
+
+           // $tag->slug = $request->slug;
+
+            $tag->save();
+            }
+            /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Model\Tags  $tags
@@ -80,7 +101,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+         return Tag::where('id', $id)->delete();
     }
 }
 

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Symfony\Component\HttpFoundation\Response;
+
+use App\Http\Requests\NewsRequest;
 use App\Http\Resources\News\NewsResource;
 use App\Http\Resources\News\NewsCollection;
 
@@ -10,6 +13,18 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+
+  public function __construct()
+   {
+     
+     $this->middleware('auth:api')->except('index','show');
+
+   }
+
+
+   
+
+
     /**
      * Display a listing of the resource.
      *
@@ -37,9 +52,35 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
-        //
+          $news = new News;
+          $news->title = $request->title;
+          $news->subtitle = $request->subtitle;
+          $news->slug = str_slug($request->title, '-');
+          $news->body = $request->content;
+          $news->main_image = $request->main_image;
+          $news->images = $request->images;
+          $news->body = $request->content;
+          $news->tags = $request->tags;
+          $news->categories = $request->categories;
+
+          $news->like = $request->like;
+          $news->dislike = $request->dislike;
+          $news->created_at = $request->created_at;
+          $news->updated_at = $request->updated_at;
+          // work on this tomorrow morning
+         // $news->tags()->sync($request->tags);
+        //  $news->categories()->sync($request->categories);
+          $news->save();
+
+          return response([
+                
+           'data' => new NewsResource($news)     
+
+          ],Response::HTTP_CREATED);
+
+       // return $request->all();
     }
 
     /**
