@@ -141,6 +141,7 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        $news->delete();
+        return response(null,Response::HTTP_NO_CONTENT);
     }
 }
