@@ -17,7 +17,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return NewsCollection::collection(News::all());
+        //return NewsCollection::collection(News::all());
+        return NewsCollection::collection(News::paginate(20));
     }
 
     /**

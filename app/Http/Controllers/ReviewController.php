@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReviewResource;
 use App\Model\Review;
+use App\Model\News;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -11,10 +13,10 @@ class ReviewController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
-    public function index()
+     */ 
+    public function index(News $news )
     {
-        //
+        return ReviewResource::collection($news->reviews);
     }
 
     /**
