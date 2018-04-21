@@ -17,7 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::get('get-file', 'CloudController@getFile');
+Route::post('upload-file', ['as'=>'upload-file','uses'=>'CloudController@uploadFile']);
 Route::apiResource('/news', 'NewsController');
 Route::apiResource('/tags', 'TagController');
 Route::apiResource('/category', 'CategoryController');

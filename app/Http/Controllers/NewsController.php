@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Symfony\Component\HttpFoundation\Response;
-
+use JD\Cloudder\Facades\Cloudder;
 use App\Http\Requests\NewsRequest;
 use App\Http\Resources\News\NewsResource;
 use App\Http\Resources\News\NewsCollection;
@@ -14,12 +14,14 @@ use Illuminate\Http\Request;
 class NewsController extends Controller
 {
 
-  public function __construct()
-   {
-     
-     $this->middleware('auth:api')->except('index','show');
 
-   }
+//This should be uncommented when  the front end is done with user authentication
+  // public function __construct()
+  //  {
+     
+  //    $this->middleware('auth:api')->except('index','show');
+
+  //  }
 
 
    
@@ -54,6 +56,7 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request)
     {
+
           $news = new News;
           $news->title = $request->title;
           $news->subtitle = $request->subtitle;
@@ -72,6 +75,48 @@ class NewsController extends Controller
           // work on this tomorrow morning
          // $news->tags()->sync($request->tags);
         //  $news->categories()->sync($request->categories);
+
+
+
+
+        if($request->hasfile('main_image'))
+        {
+       
+            \Cloudder::upload($request->file('main_image'));
+            $c1=\Cloudder::getResult();             
+            if($c1){
+                 $news->main_image=$c1['url'];
+            
+            }   
+           }
+
+           if($request->hasfile('images'))
+           {
+            
+                \Cloudder::upload($request->file('images'));
+                $c2=\Cloudder::getResult();             
+                if($c2){
+                     $news->images=$c2['url'];
+                   
+                }
+   
+                 
+              }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           $news->save();
 
           return response([
