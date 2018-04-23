@@ -4970,17 +4970,17 @@
     },
     {
         "name": "jrm2k6/cloudder",
-        "version": "0.4.0",
-        "version_normalized": "0.4.0.0",
+        "version": "0.5.0",
+        "version_normalized": "0.5.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/jrm2k6/cloudder.git",
-            "reference": "82d75368890424d166bf025df39611a1d18abcc0"
+            "reference": "f394361b1d5e6c9089f339151bd621ed8fbfd708"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/jrm2k6/cloudder/zipball/82d75368890424d166bf025df39611a1d18abcc0",
-            "reference": "82d75368890424d166bf025df39611a1d18abcc0",
+            "url": "https://api.github.com/repos/jrm2k6/cloudder/zipball/f394361b1d5e6c9089f339151bd621ed8fbfd708",
+            "reference": "f394361b1d5e6c9089f339151bd621ed8fbfd708",
             "shasum": ""
         },
         "require": {
@@ -4992,8 +4992,18 @@
             "mockery/mockery": "0.9.*",
             "phpunit/phpunit": "4.*"
         },
-        "time": "2017-02-03T19:10:37+00:00",
+        "time": "2018-04-08T00:49:25+00:00",
         "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "JD\\Cloudder\\CloudderServiceProvider"
+                ],
+                "aliases": {
+                    "Cloudder": "JD\\Cloudder\\Facades"
+                }
+            }
+        },
         "installation-source": "dist",
         "autoload": {
             "psr-0": {

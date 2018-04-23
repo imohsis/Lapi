@@ -1,4 +1,4 @@
-# Cloudder - Cloudinary wrapper for Laravel 5
+# Cloudder - Cloudinary wrapper for Laravel 5 / Lumen
 
 [![Build Status](http://img.shields.io/travis/jrm2k6/cloudder/master.svg?style=flat-square)](https://travis-ci.org/jrm2k6/cloudder)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)
@@ -13,7 +13,7 @@
 
 ## Installation
 
-`composer require jrm2k6/cloudder:0.3.*`
+`composer require jrm2k6/cloudder:0.4.*`
 
 For people still using Laravel 4.2: `composer require jrm2k6/cloudder:0.1.*` and check the branch l4 for the installation instructions.
 
@@ -24,10 +24,11 @@ Modify your `.env` file to add the following information from [Cloudinary](http:
 
 ### Required
 
+
 ```
-CLOUDINARY_API_KEY=`your key`
-CLOUDINARY_API_SECRET=`your secret`
-CLOUDINARY_CLOUD_NAME=`your cloud name`
+CLOUDINARY_API_KEY=012345679890123
+CLOUDINARY_API_SECRET=foobarfoobarfoob-arfoobarfo
+CLOUDINARY_CLOUD_NAME=foobarcorp
 ```
 
 ### Optional
@@ -37,6 +38,8 @@ CLOUDINARY_BASE_URL
 CLOUDINARY_SECURE_URL
 CLOUDINARY_API_BASE_URL
 ```
+Laravel 5.5+ uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
+If you don't use auto-discovery follow the next steps:
 
 Add the following in config/app.php:
 
@@ -64,7 +67,7 @@ with:
 
 * `$filename`: path to the image you want to upload
 * `$publicId`: the id you want your picture to have on Cloudinary, leave it null to have Cloudinary generate a random id.
-* `$options`: options for your uploaded image, check the Cloudinary documentation to know more
+* `$options`: options for your uploaded image, check the [Cloudinary documentation](http://cloudinary.com/documentation/php_image_upload#all_upload_options) to know more
 * `$tags`: tags for your image
 
 returns the `CloudinaryWrapper`.

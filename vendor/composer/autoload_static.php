@@ -402,6 +402,7 @@ class ComposerStaticInit5300e3a77b34d99b6e3ce31faac7c115
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryController.php',
         'App\\Http\\Controllers\\CelebrityController' => __DIR__ . '/../..' . '/app/Http/Controllers/CelebrityController.php',
+        'App\\Http\\Controllers\\CloudController' => __DIR__ . '/../..' . '/app/Http/Controllers/CloudController.php',
         'App\\Http\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\EventController' => __DIR__ . '/../..' . '/app/Http/Controllers/EventController.php',
