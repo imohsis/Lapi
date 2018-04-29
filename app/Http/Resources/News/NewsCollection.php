@@ -20,9 +20,10 @@ class NewsCollection extends JsonResource
     {
       return [
 
-
+         'id'   => $this->id,
         'title' => $this->title,
        'subtitle' => $this->subtitle,
+       'slug' => $this->slug,
        'main_image' => $this->main_image,
        'content' => $this->body,
        'images' => $this->images,

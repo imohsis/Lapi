@@ -35,7 +35,8 @@ class NewsController extends Controller
     public function index()
     {
         //return NewsCollection::collection(News::all());
-        return NewsCollection::collection(News::paginate(20));
+        return NewsCollection::collection(News::orderBy('id', 'DESC')
+->paginate(10));
     }
 
     /**
@@ -62,8 +63,8 @@ class NewsController extends Controller
           $news->subtitle = $request->subtitle;
           $news->slug = str_slug($request->title, '-');
           $news->body = $request->content;
-          $news->main_image = $request->main_image;
-          $news->images = $request->images;
+          // $news->main_image = $request->main_image;
+          // $news->images = $request->images;
           $news->body = $request->content;
           $news->tags = $request->tags;
           $news->categories = $request->categories;
@@ -82,27 +83,44 @@ class NewsController extends Controller
         if($request->hasfile('main_image'))
         {
        
-            \Cloudder::upload($request->file('main_image'));
-            $c1=\Cloudder::getResult();             
-            if($c1){
-                 $news->main_image=$c1['url'];
+
+            $image = $request->file('main_image');      
+            $name= time() . '.' . $image->getClientOriginalExtension();
+           
+             $location =public_path('images/'. $name);
+
+
+             $image->move(public_path().'/images/', $name);  
+
+            // \Cloudder::upload($request->file('main_image'));
+            // $c1=\Cloudder::getResult();             
+            // if($c1){
+            //      $news->main_image=$c1['url'];
             
-            }   
+         //   }   
            }
 
            if($request->hasfile('images'))
            {
             
-                \Cloudder::upload($request->file('images'));
-                $c2=\Cloudder::getResult();             
-                if($c2){
-                     $news->images=$c2['url'];
+
+
+             $image1 = $request->file('n_sub_image1');      
+             $name1= time() . '.' . $image1->getClientOriginalExtension();
+              
+             $location1 =public_path('images1/'. $name1);
+
+             $image1->move(public_path().'/images1/', $name1); 
+
+
+
+                // \Cloudder::upload($request->file('images'));
+                // $c2=\Cloudder::getResult();             
+                // if($c2){
+                //      $news->images=$c2['url'];
                    
                 }
    
-                 
-              }
-
 
 
 
